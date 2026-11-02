@@ -128,7 +128,6 @@
     .button-mint{background:var(--mint);border-color:var(--mint);color:var(--navy)}
     .button-mint:hover{background:#e1f3eb}
     .button-mint svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5}
-    .contact-panel .whatsapp-note{font-size:10px;color:#c2d2d6;margin-top:10px}
     .contact-panel .place{font-size:11px;margin-top:22px;color:#c2d2d6}
     .contact-panel a:focus-visible,.contact-panel button:focus-visible{outline-color:var(--mint)}
     footer{border-top:1px solid var(--line);padding-block:24px;font-size:11px;color:var(--muted)}
@@ -260,8 +259,7 @@
           <span class="contact-label">Escríbeme</span>
           <!-- EDITAR CORREO: cambiar también los mailto de muestras, diálogo y noscript. -->
           <a class="email" href="mailto:aespinozap1995@gmail.com">aespinozap1995@gmail.com</a>
-          <div class="contact-actions"><a id="whatsapp" class="button button-mint" href="mailto:aespinozap1995@gmail.com" aria-describedby="whatsapp-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8.5 8.5 0 0 1-12.5 7.4L3 20l1.1-4.5A8.5 8.5 0 1 1 20 11.5Z"/><path d="M8 7c0 4 2 6 6 7l2-2-2-1-1 1-2-2 1-1-1-2Z"/></svg>Contactar por WhatsApp <span class="arrow" aria-hidden="true">↗</span></a></div>
-          <p id="whatsapp-note" class="whatsapp-note">WhatsApp pendiente de configurar. Puedes escribirme por correo.</p>
+          <div class="contact-actions"><a class="button button-mint" href="mailto:aespinozap1995@gmail.com?subject=Consulta%20sobre%20un%20proyecto%20acad%C3%A9mico">Escríbeme por correo <span class="arrow" aria-hidden="true">↗</span></a></div>
           <p class="place">Naranjito, Guayas · Ecuador</p>
         </div>
       </div>
@@ -272,13 +270,10 @@
     <h2 id="aviso-titulo">Enlace pendiente</h2><p id="aviso-texto">Puedes consultar este recurso por correo.</p>
     <div class="dialog-actions"><a class="button" href="mailto:aespinozap1995@gmail.com">Escribir por correo <span aria-hidden="true">↗</span></a><form method="dialog"><button class="dialog-close">Cerrar</button></form></div>
   </dialog>
-  <noscript><p class="wrap" style="padding-bottom:20px;font-size:13px">Puedes recorrer todo el portafolio sin JavaScript. Para consultar muestras o el contacto de WhatsApp, escribe a <a href="mailto:aespinozap1995@gmail.com">aespinozap1995@gmail.com</a>.</p></noscript>
+  <noscript><p class="wrap" style="padding-bottom:20px;font-size:13px">Puedes recorrer todo el portafolio sin JavaScript. Para consultar muestras o contactarme, escribe a <a href="mailto:aespinozap1995@gmail.com">aespinozap1995@gmail.com</a>.</p></noscript>
   <script>
     "use strict";
     /* ==================== CONFIGURACIÓN EDITABLE ====================
-       1. WHATSAPP_NUMERO: código de país + número, solo dígitos.
-          Ecuador: 593 seguido de los 9 dígitos del móvil, sin el 0 inicial.
-          Dejar vacío hasta tener el número definitivo. No se inventa un contacto.
        2. MUESTRAS: pegar las URL públicas completas (https://...) entre comillas.
           También se admiten rutas relativas a otros ejemplos si se publican después.
           Dejar "" si todavía no hay ejemplo; se mostrará «Enlace pendiente».
@@ -286,8 +281,6 @@
        No hay analítica, cookies, librerías, peticiones ni fuentes externas.
     ================================================================= */
     const CONFIG = {
-      WHATSAPP_NUMERO: "593961256663",
-      WHATSAPP_MENSAJE: "Hola, Steven. Me gustaría conversar sobre un proyecto académico.",
       MUESTRAS: {
         recta: "",          // Enlace a la presentación de pendiente y ecuación de la recta.
         inventario: "",     // Enlace a la presentación de sistemas de inventario.
@@ -338,21 +331,6 @@
         });
       }
     });
-
-    const whatsapp = document.getElementById("whatsapp");
-    const numero = String(CONFIG.WHATSAPP_NUMERO).trim();
-    if (/^[1-9]\d{7,14}$/.test(numero)) {
-      whatsapp.href = "https://wa.me/" + numero + "?text=" + encodeURIComponent(CONFIG.WHATSAPP_MENSAJE);
-      whatsapp.target = "_blank";
-      whatsapp.rel = "noopener noreferrer";
-      whatsapp.setAttribute("aria-label", "Contactar por WhatsApp (abre en otra pestaña)");
-      document.getElementById("whatsapp-note").textContent = "Se abrirá WhatsApp con un mensaje que puedes editar.";
-    } else {
-      whatsapp.addEventListener("click", evento => {
-        evento.preventDefault();
-        mostrarAviso("Conversemos por correo", "El número de WhatsApp aún no está configurado. Puedes escribirme a aespinozap1995@gmail.com para conversar sobre tu proyecto.");
-      });
-    }
   </script>
 </body>
 </html>
